@@ -59,30 +59,15 @@ async def loader(bot, update):
     result = True #, dl_path = download_file(url, dirs)
     print(result, dl_path1)
     if result == True:
-        
-        
-        thumb_url = DEFAULT_THUMBNAIL
-        thumb = f'./downloads/thumb_{update.id}.jpg'
-        r = requests.get(thumb_url, allow_redirects=True)
-        open(thumb, 'wb').write(r.content)
-        if os.path.exists(thumb):
-            width = 0
-            height = 0
-            metadata = extractMetadata(createParser(thumb))
-            if metadata.has('width'):
-                width = metadata.get('width')
-            if metadata.has('height'):
-                height = metadata.get('height')
-            Image.open(thumb).convert('RGB').save(thumb)
-            img = Image.open(thumb)
-            # https://stackoverflow.com/a/37631799/4723940
-            # img.thumbnail((90, 90))
-            if AS_DOC == 'True':
-                img.resize((320, height))
-            elif AS_DOC == 'False':
-                img.resize((90, height))
-            img.save(thumb, "JPEG")
         metadata = extractMetadata(createParser(dl_path1))
+        if metadata:
+            if metadata.has("duration"):
+                duration = metadata.get('duration').seconds
+            else:
+                duration = 0
+            
+        thumb = await take_screen_shot(dl_path1, os.path.dirname(dl_path1), random.randint(0, duration - 1))
+        
         if metadata is not None:
             if metadata.has("duration"):
                 duration = metadata.get('duration').seconds
