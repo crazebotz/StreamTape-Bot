@@ -47,23 +47,18 @@ async def loader(bot, update):
     pablo = await update.reply_text('Downloading...')
     dirs = f"{dirs}/Video.mp4"
     
-    dl_path1 = await download_multithreaded1(url, 8, dirs,xbot,pablo.chat.id,pablo.id)
+    dl_path1 = await download_multithreaded1(url, 4, dirs,xbot,pablo.chat.id,pablo.id)
     
     
     result = True #, dl_path = download_file(url, dirs)
     print(result, dl_path1)
     if result == True:
         
-        r, poster = scrape_poster(update.text)
-        if r:
-            thumb = f'./downloads/thumb_{update.id}.jpg'
-            r = requests.get(poster, allow_redirects=True)
-            open(thumb, 'wb').write(r.content)
-        else:
-            thumb_url = DEFAULT_THUMBNAIL
-            thumb = f'./downloads/thumb_{update.id}.jpg'
-            r = requests.get(thumb_url, allow_redirects=True)
-            open(thumb, 'wb').write(r.content)
+        
+        thumb_url = DEFAULT_THUMBNAIL
+        thumb = f'./downloads/thumb_{update.id}.jpg'
+        r = requests.get(thumb_url, allow_redirects=True)
+        open(thumb, 'wb').write(r.content)
         if os.path.exists(thumb):
             width = 0
             height = 0
