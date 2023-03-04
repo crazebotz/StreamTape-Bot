@@ -1,5 +1,10 @@
 from test import *
 
+dirs = './DOWNLOADS/'
+    if not os.path.isdir(dirs):
+        os.mkdir(dirs)
+
+
 # Start message
 @xbot.on_message(filters.command(['start','fast']) & filters.chat(OWNER_ID) & filters.private)
 async def start(bot, update):
@@ -8,9 +13,7 @@ async def start(bot, update):
 
 @xbot.on_message(filters.text & filters.chat(OWNER_ID) & filters.private)
 async def loader(bot, update):
-    dirs = './downloads/'
-    if not os.path.isdir(dirs):
-        os.mkdir(dirs)
+    
      
     if 'streamtape.com' in update.text:
         link = update.text
@@ -45,9 +48,11 @@ async def loader(bot, update):
         url = link
     
     pablo = await update.reply_text('Downloading...')
-    dirs = f"{dirs}/Video.mp4"
+    file_name = await get_details(url)
+    file_path = f"{dirs}/{file_name}"
     
-    dl_path1 = await download_multithreaded1(url, 4, dirs,xbot,pablo.chat.id,pablo.id)
+    
+    dl_path1 = await download_multithreaded1(url, 4, file_path,xbot,pablo.chat.id,pablo.id)
     
     
     result = True #, dl_path = download_file(url, dirs)
