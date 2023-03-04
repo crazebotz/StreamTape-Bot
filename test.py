@@ -9,6 +9,7 @@ from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from hachoir.metadata import extractMetadata
 from hachoir.parser import createParser
 from PIL import Image
+import re
 # from test import *
 
 
@@ -52,6 +53,18 @@ def get_ticket(file_id):
     # print(data)
     result = data.get('result')
     return result
+
+async def get_details(url):
+    response = requests.head(url)
+    if "Content-Disposition" in response.headers:
+        try:
+            filename = re.findall("filename=(.+)", response.headers["Content-Disposition"])[0]
+        except:
+            filename = "Untitled"
+    else:
+        filename = url.split("/")[-1]
+        
+    return filename
 
 def dl_url(ticket,file_id):
     headers = {'file':file_id,'ticket':ticket,'login':login_key,'key':key}
