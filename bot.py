@@ -1,4 +1,5 @@
 from test import *
+from screenshot import take_screen_shot
 
 dirs = './DOWNLOADS/'
 if not os.path.isdir(dirs):
