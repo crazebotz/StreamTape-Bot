@@ -1,8 +1,8 @@
 from test import *
 
 dirs = './DOWNLOADS/'
-    if not os.path.isdir(dirs):
-        os.mkdir(dirs)
+if not os.path.isdir(dirs):
+   os.mkdir(dirs)
 
 
 # Start message
