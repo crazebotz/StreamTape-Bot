@@ -47,7 +47,7 @@ async def loader(bot, update):
     pablo = await update.reply_text('Downloading...')
     dirs = f"{dirs}/Video.mp4"
     
-    dl_path1 = await download_multithreaded1(url, 20, dirs,xbot,pablo.chat.id,pablo.id)
+    dl_path1 = await download_multithreaded1(url, 8, dirs,xbot,pablo.chat.id,pablo.id)
     
     
     result = True #, dl_path = download_file(url, dirs)
