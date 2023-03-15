@@ -1,6 +1,6 @@
 from test import *
 from screenshot import take_screen_shot
-
+import random
 
 @xbot.on_message(
   filters.command(['start', 'fast']) & filters.chat(OWNER_ID) & filters.private
