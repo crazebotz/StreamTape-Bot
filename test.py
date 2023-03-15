@@ -35,7 +35,7 @@ xbot = Client(
     api_id=APP_ID,
     api_hash=API_HASH,
     bot_token=BOT_TOKEN,
-    workers = 2
+    workers = 3
 )
 
 
