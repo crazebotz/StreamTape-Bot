@@ -34,7 +34,8 @@ xbot = Client(
     'StreamtapeLoader',
     api_id=APP_ID,
     api_hash=API_HASH,
-    bot_token=BOT_TOKEN
+    bot_token=BOT_TOKEN,
+    workers = 2
 )
 
 
@@ -102,7 +103,6 @@ def get_direct_streamtape(url):
     # print(ticket)
     time.sleep(result.get('wait_time'))
     link = dl_url(ticket,file_id)
-    print("Downloading")
     return link
 
 
@@ -261,67 +261,6 @@ def human_readable_time(seconds):
         minutes = (seconds % 3600) // 60
         seconds = seconds % 60
         return f"{hours:.0f}h, {minutes:.0f}m, {seconds:.0f}s"
-
-
-
-"""
-async def download_multithreaded1(url, num_threads, output_file, bot,chat_id, message_id):
-    def download_chunk(start_byte, end_byte):
-        headers = {'Range': f'bytes={start_byte}-{end_byte}'}
-        response = requests.get(url, headers=headers, stream=True)
-        content_range = response.headers.get('Content-Range')
-        chunk_size = end_byte - start_byte
-        return response.content
-
-    response = requests.head(url)
-    content_length = int(response.headers['Content-Length'])
-    chunk_size = content_length // num_threads
-
-    # Set up progress bar
-    progress_bar = "0%: [" + " " * 50 + "] 0B/s"
-    await bot.edit_message_text(chat_id=chat_id, message_id=message_id, text=progress_bar)
-
-    with ThreadPoolExecutor() as executor:
-        futures = []
-        for i in range(num_threads):
-            start_byte = i * chunk_size
-            end_byte = (i + 1) * chunk_size - 1 if i < num_threads - 1 else content_length - 1
-            future = executor.submit(download_chunk, start_byte, end_byte)
-            futures.append(future)
-        contents = []
-        downloaded = 0
-        start = time.time()
-        display_message = progress_bar
-        for future in futures:
-            chunk = future.result()
-            contents.append(chunk)
-            downloaded += len(chunk)
-
-            # Update progress bar
-            if downloaded >= content_length:
-                progress_bar = "100%: [" + "#" * 50 + "] " + human_readable_size(downloaded / (time.time() - start))
-                await bot.edit_message_text(chat_id=chat_id, message_id=message_id, text=progress_bar)
-            elif downloaded > 0:
-                progress = int(downloaded / content_length * 50)
-                print(progress)
-                progress_bar = str(round(downloaded / content_length * 100)) + "%: [" + "#" * progress + " " * (50 - progress) + "] " + human_readable_size(downloaded / (time.time() - start))
-                if progress_bar != display_message:
-                    await bot.edit_message_text(chat_id=chat_id, message_id=message_id, text=progress_bar)
-                    display_message = progress_bar
-
-    with open(output_file, 'wb') as f:
-        f.write(b''.join(contents))
-
-    return output_file
-"""
-
-
-
-
-
-
-
-
 
 
 
