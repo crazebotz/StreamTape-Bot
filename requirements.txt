@@ -1,7 +1,6 @@
 pyrogram
 tgCrypto
 requests
+moviepy
 bs4
 aiohttp
-hachoir==3.1.2
-Pillow==8.3.1

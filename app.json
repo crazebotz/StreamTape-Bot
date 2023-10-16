@@ -15,25 +15,9 @@
       "description": "Your bot token, as a string.",
       "value": ""
     },
-    "APP_ID": {
-      "description": "Get this value from https://my.telegram.org",
-      "value": ""
-    },
-    "API_HASH": {
-      "description": "Get this value from https://my.telegram.org",
-      "value": ""
-    },
-    "OWNER_ID": {
-      "description": "Your telegram id, not username. Open https://t.me/MissRose_bot and send /id to bot",
-      "value": ""
-    },
-    "AS_DOC": {
-      "description": "True: will upload as document | False: will upload as video",
-      "value": "False"
-    },
-    "DEFAULT_THUMBNAIL": {
-      "description": "Default Thumbnail if bot can't find streamtape video thumbnail",
-      "value": "https://telegra.ph/file/7adee9735e65353398942.jpg"
+    "NUMBER": {
+      "description": "Thread Number",
+      "value": "5"
     }
   },
   "addons": [
