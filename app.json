@@ -7,9 +7,9 @@
     "streamtape",
     "downloader"
   ],
-  "success_url": "https://github.com/X-Gorn/StreamtapeLoader",
+  "success_url": "https://github.com/crazebotz/StreamTape-Bot",
   "website": "https://github.com/X-Gorn",
-  "repository": "https://github.com/X-Gorn/StreamtapeLoader",
+  "repository": "https://github.com/crazebotz/StreamTape-Bot",
   "env": {
     "BOT_TOKEN": {
       "description": "Your bot token, as a string.",
